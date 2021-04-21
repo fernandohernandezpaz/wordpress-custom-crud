@@ -5,4 +5,4 @@ wp-includes
 # files
 wp-config.php
 .htaccess
-
+wp-content/debug.log
