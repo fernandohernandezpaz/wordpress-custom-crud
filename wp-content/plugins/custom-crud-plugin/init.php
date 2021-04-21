@@ -12,6 +12,7 @@ define('ROOTDIR', plugin_dir_path(__FILE__));
 
 // agregando nuevas funciones
 require_once(ROOTDIR . 'causas_muerte_list.php');
+require_once(ROOTDIR . 'causas_muerte_create.php');
 
 // if you want to check in debug log
 // require_once(ROOTDIR . 'write_in_log.php');
@@ -39,14 +40,20 @@ function agregarNuevasOpcionesMenu()
     $configMenu = [
         'menu' => [
             [
-                'page_title' => 'Estadisticas',
-                'menu_title' => 'Estadisticas',
+                'page_title' => 'Causas muerte',
+                'menu_title' => 'Causas muerte',
                 'menu_slug' => 'lista_estadisticas',
                 'function' => 'list_causas_muerte',
             ]
         ],
         'sub_menu' => [
-
+            [
+                'parent_slug' => null,
+                'page_title' => 'Crear causas muerte',
+                'menu_title' => 'Crear causas muerte',
+                'menu_slug' => 'crear_causa_muerte',
+                'function' => 'formulario_registro_causas_muerte',
+            ]
         ]
     ];
     $keys = array_keys($configMenu);
@@ -54,6 +61,17 @@ function agregarNuevasOpcionesMenu()
         if ($key === 'menu') {
             foreach ($configMenu[$key] as $option) {
                 add_menu_page(
+                    $option['page_title'],
+                    $option['menu_title'],
+                    'manage_options',
+                    $option['menu_slug'],
+                    $option['function']
+                );
+            }
+        } else {
+            foreach ($configMenu[$key] as $option) {
+                add_submenu_page(
+                    $option['parent_slug'],
                     $option['page_title'],
                     $option['menu_title'],
                     'manage_options',

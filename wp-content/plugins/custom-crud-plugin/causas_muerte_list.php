@@ -19,7 +19,7 @@ function list_causas_muerte()
                     <h4>Lista de causas de muerte</h4>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-4">
-                    <a href=""
+                    <a href="<?php echo admin_url('admin.php?page=crear_causa_muerte'); ?>"
                        role="button" class="btn btn-outline-primary">
                         Agregar nueva causa muerte
                     </a>
@@ -49,7 +49,29 @@ function list_causas_muerte()
                                     No se encontraron datos registrados
                                 </td>
                             </tr>
-                        <?php } ?>
+                            <?php
+                        } else {
+                            foreach ($data as $row) {
+                                ?>
+                                <tr>
+                                    <th><?php echo $row->id ?></th>
+                                    <th><?php echo $row->user_id ?></th>
+                                    <th><?php echo $row->descripcion ?></th>
+                                    <th><?php echo $row->abreviatura ?></th>
+                                    <th><?php echo $row->activo ?></th>
+                                    <th>
+                                        <a href="" style="text-decoration: none" class="text-primary">
+                                            Actualizar
+                                        </a>
+                                        <a href="" style="text-decoration: none" class="text-danger">
+                                            Eliminar
+                                        </a>
+                                    </th>
+                                </tr>
+                                <?php
+                            }
+                        }
+                        ?>
                         </tbody>
                     </table>
                 </div>
