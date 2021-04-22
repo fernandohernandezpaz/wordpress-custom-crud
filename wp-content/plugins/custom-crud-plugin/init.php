@@ -14,6 +14,7 @@ define('ROOTDIR', plugin_dir_path(__FILE__));
 require_once(ROOTDIR . 'causas_muerte_list.php');
 require_once(ROOTDIR . 'causas_muerte_create.php');
 require_once(ROOTDIR . 'causas_muerte_update.php');
+require_once(ROOTDIR . 'causas_muerte_delete.php');
 
 // if you want to check in debug log
 // require_once(ROOTDIR . 'write_in_log.php');
@@ -61,6 +62,13 @@ function agregarNuevasOpcionesMenu()
                 'menu_title' => 'Actualizar causas muerte',
                 'menu_slug' => 'actualizar_causa_muerte',
                 'function' => 'formulario_actualizar_causas_muerte',
+            ],
+            [
+                'parent_slug' => null,
+                'page_title' => 'Eliminar causas muerte',
+                'menu_title' => 'Eliminar causas muerte',
+                'menu_slug' => 'eliminar_causa_muerte',
+                'function' => 'formulario_eliminar_causas_muerte',
             ]
         ]
     ];

@@ -37,7 +37,7 @@ function formulario_actualizar_causas_muerte()
                     <div class="alert alert-success" role="alert"><?php echo $message; ?></div><?php endif; ?>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                     <form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
-                        <input type="hidden" value="<?php echo $registro->id; ?>">
+                        <input type="hidden" name="id" value="<?php echo $registro->id; ?>">
                         <div class="row">
                             <div class="col-lg-7 col-md-7 col-sm-10 col-12">
                                 <label for="descripcion" class="form-label">Descripción*</label>

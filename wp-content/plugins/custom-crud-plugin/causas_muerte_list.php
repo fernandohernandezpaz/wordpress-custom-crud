@@ -66,7 +66,8 @@ function list_causas_muerte()
                                            style="text-decoration: none" class="text-primary">
                                             Actualizar
                                         </a>
-                                        <a href="" style="text-decoration: none" class="text-danger">
+                                        <a href="<?php echo admin_url('admin.php?page=eliminar_causa_muerte&id=' . $row->id); ?>"
+                                           style="text-decoration: none" class="text-danger">
                                             Eliminar
                                         </a>
                                     </th>
