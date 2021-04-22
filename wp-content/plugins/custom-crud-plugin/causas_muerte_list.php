@@ -58,9 +58,12 @@ function list_causas_muerte()
                                     <th><?php echo $row->user_id ?></th>
                                     <th><?php echo $row->descripcion ?></th>
                                     <th><?php echo $row->abreviatura ?></th>
-                                    <th><?php echo $row->activo ?></th>
+                                    <th class="text-center <?php echo $row->activo ? 'text-success' : 'text-muted' ?>">
+                                        <?php echo $row->activo ? 'Activo' : 'Inactivo'; ?>
+                                    </th>
                                     <th>
-                                        <a href="" style="text-decoration: none" class="text-primary">
+                                        <a href="<?php echo admin_url('admin.php?page=actualizar_causa_muerte&id=' . $row->id); ?>"
+                                           style="text-decoration: none" class="text-primary">
                                             Actualizar
                                         </a>
                                         <a href="" style="text-decoration: none" class="text-danger">

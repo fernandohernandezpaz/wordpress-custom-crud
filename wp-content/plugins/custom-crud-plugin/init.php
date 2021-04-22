@@ -13,6 +13,7 @@ define('ROOTDIR', plugin_dir_path(__FILE__));
 // agregando nuevas funciones
 require_once(ROOTDIR . 'causas_muerte_list.php');
 require_once(ROOTDIR . 'causas_muerte_create.php');
+require_once(ROOTDIR . 'causas_muerte_update.php');
 
 // if you want to check in debug log
 // require_once(ROOTDIR . 'write_in_log.php');
@@ -53,17 +54,25 @@ function agregarNuevasOpcionesMenu()
                 'menu_title' => 'Crear causas muerte',
                 'menu_slug' => 'crear_causa_muerte',
                 'function' => 'formulario_registro_causas_muerte',
+            ],
+            [
+                'parent_slug' => null,
+                'page_title' => 'Actualizar causas muerte',
+                'menu_title' => 'Actualizar causas muerte',
+                'menu_slug' => 'actualizar_causa_muerte',
+                'function' => 'formulario_actualizar_causas_muerte',
             ]
         ]
     ];
     $keys = array_keys($configMenu);
+    $capability = 'manage_options';
     foreach ($keys as $key) {
         if ($key === 'menu') {
             foreach ($configMenu[$key] as $option) {
                 add_menu_page(
                     $option['page_title'],
                     $option['menu_title'],
-                    'manage_options',
+                    $capability,
                     $option['menu_slug'],
                     $option['function']
                 );
@@ -74,36 +83,13 @@ function agregarNuevasOpcionesMenu()
                     $option['parent_slug'],
                     $option['page_title'],
                     $option['menu_title'],
-                    'manage_options',
+                    $capability,
                     $option['menu_slug'],
                     $option['function']
                 );
             }
         }
     }
-    //this is the main item for the menu
-//    add_menu_page('Schools', //page title
-//        'Schools', //menu title
-//        'manage_options', //capabilities
-//        'sinetiks_schools_list', //menu slug
-//        'sinetiks_schools_list' //function
-//    );
-//
-//    //this is a submenu
-//    add_submenu_page('sinetiks_schools_list', //parent slug
-//        'Add New School', //page title
-//        'Add New', //menu title
-//        'manage_options', //capability
-//        'sinetiks_schools_create', //menu slug
-//        'sinetiks_schools_create'); //function
-//
-//    //this submenu is HIDDEN, however, we need to add it anyways
-//    add_submenu_page(null, //parent slug
-//        'Update School', //page title
-//        'Update', //menu title
-//        'manage_options', //capability
-//        'sinetiks_schools_update', //menu slug
-//        'sinetiks_schools_update'); //function
 }
 
 
