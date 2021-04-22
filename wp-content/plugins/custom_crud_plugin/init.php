@@ -11,10 +11,7 @@ Author URI: -
 define('ROOTDIR', plugin_dir_path(__FILE__));
 // wp-content/plugins/custom-crud-plugin/
 // agregando nuevas funciones
-require_once(ROOTDIR . 'causas_muerte_list.php');
-require_once(ROOTDIR . 'causas_muerte_create.php');
-require_once(ROOTDIR . 'causas_muerte_update.php');
-require_once(ROOTDIR . 'causas_muerte_delete.php');
+require_once(ROOTDIR . 'modulos/causas_muerte/CausasMuerte.php');
 
 // if you want to check in debug log
 // require_once(ROOTDIR . 'write_in_log.php');
