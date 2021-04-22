@@ -4,15 +4,13 @@ function formulario_actualizar_causas_muerte()
     global $wpdb;
     $table_name = $wpdb->prefix . "causas_muerte";
     $id = $_GET['id'];
-    $registro = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name WHERE id=%s", $id));
-    $registro = $registro[0];
     //UPDATE
     if (isset($_POST['update'])) {
         $datos = [
             'user_id' => get_current_user_id(),
             'descripcion' => $_POST['descripcion'],
             'abreviatura' => $_POST['abreviatura'],
-            'activo' => $_POST['activo']
+            'activo' => filter_var($_POST['activo'], FILTER_VALIDATE_BOOLEAN),
         ];
 
         $wpdb->update(
@@ -24,6 +22,9 @@ function formulario_actualizar_causas_muerte()
         );
         $message = "Causa de muerte actualizada exitosamente";
     }
+    $registro = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name WHERE id=%s", $id));
+    $registro = $registro[0];
+    var_dump($registro->activo);
     ?>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
@@ -53,8 +54,9 @@ function formulario_actualizar_causas_muerte()
                             </div>
                             <div class="col-lg-7 col-md-7 col-sm-10 col-12 mt-2">
                                 <div class="form-check">
-                                    <input type="checkbox" <?php echo $registro->activo ? 'checked' : ''; ?>
-                                           class="form-check-input" name="activo" id="activo">
+                                    <input type="checkbox"
+                                           <?php if (filter_var($registro->activo, FILTER_VALIDATE_BOOLEAN)) { ?>checked<?php } ?>
+                                           class="form-check-input" name="activo" value="true" id="activo">
                                     <label class="form-check-label" for="activo">Estado</label>
                                 </div>
                             </div>

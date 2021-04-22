@@ -9,7 +9,7 @@ function formulario_registro_causas_muerte()
             'user_id' => get_current_user_id(),
             'descripcion' => $_POST['descripcion'],
             'abreviatura' => $_POST['abreviatura'],
-            'activo' => $_POST['activo'],
+            'activo' => filter_var($_POST['activo'], FILTER_VALIDATE_BOOLEAN),
             'fecha_registro' => date('Y-m-d H:m:s')
         ];
 
@@ -47,7 +47,7 @@ function formulario_registro_causas_muerte()
                             </div>
                             <div class="col-lg-7 col-md-7 col-sm-10 col-12 mt-2">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="activo" id="activo">
+                                    <input type="checkbox" class="form-check-input" name="activo" id="activo" value="true">
                                     <label class="form-check-label" for="activo">Estado</label>
                                 </div>
                             </div>

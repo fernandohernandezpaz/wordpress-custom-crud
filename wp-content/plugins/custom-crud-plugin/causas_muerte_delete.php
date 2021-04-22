@@ -44,7 +44,8 @@ function formulario_eliminar_causas_muerte()
                                 </div>
                                 <div class="col-lg-7 col-md-7 col-sm-10 col-12 mt-2">
                                     <div class="form-check">
-                                        <input type="checkbox" <?php echo $registro->activo ? 'checked' : ''; ?>
+                                        <input type="checkbox"
+                                               <?php if (filter_var($registro->activo, FILTER_VALIDATE_BOOLEAN)) { ?>checked<?php } ?>
                                                style="pointer-events: none"
                                                class="form-check-input" name="activo" id="activo">
                                         <label class="form-check-label" style="pointer-events: none" for="activo">Estado</label>

@@ -9,7 +9,7 @@ Author URI: -
 
 // definiendo directorio en base al archivo init
 define('ROOTDIR', plugin_dir_path(__FILE__));
-
+// wp-content/plugins/custom-crud-plugin/
 // agregando nuevas funciones
 require_once(ROOTDIR . 'causas_muerte_list.php');
 require_once(ROOTDIR . 'causas_muerte_create.php');
