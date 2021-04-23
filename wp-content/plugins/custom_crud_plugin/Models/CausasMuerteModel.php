@@ -26,23 +26,6 @@ class CausasMuerteModel extends Model
     public $timestamps = false;
     public static $snakeAttributes = false;
 
-    /**
-     * Overide parent method to make sure prefixing is correct.
-     *
-     * @return string
-     */
-    public function getTable()
-    {
-        // In this example, it's set, but this is better in an abstract class
-        if (isset($this->table)) {
-            $prefix = $this->getConnection()->db->prefix;
-
-            return $prefix . $this->table;
-        }
-
-        return parent::getTable();
-    }
-
     public function getColumns()
     {
         $columns = [$this->primaryKey];
@@ -53,5 +36,12 @@ class CausasMuerteModel extends Model
     public function usuarioRegistrador()
     {
         return $this->hasOne(Users::class, 'ID', 'user_id');
+    }
+
+    public function __construct(array $attributes = array())
+    {
+        parent::__construct($attributes);
+        global $wpdb;
+        $this->table =$wpdb->prefix . $this->table;
     }
 }

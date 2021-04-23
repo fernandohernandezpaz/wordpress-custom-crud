@@ -19,15 +19,10 @@ class Users extends Model
         'user_url',
     ];
 
-    public function getTable()
+    public function __construct(array $attributes = array())
     {
-        // In this example, it's set, but this is better in an abstract class
-        if (isset($this->table)) {
-            $prefix = $this->getConnection()->db->prefix;
-
-            return $prefix . $this->table;
-        }
-
-        return parent::getTable();
+        parent::__construct($attributes);
+        global $wpdb;
+        $this->table =$wpdb->prefix . $this->table;
     }
 }

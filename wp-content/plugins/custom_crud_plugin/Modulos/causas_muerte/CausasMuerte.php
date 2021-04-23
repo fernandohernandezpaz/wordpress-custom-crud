@@ -96,8 +96,6 @@ function formulario_registro_causas_muerte()
 {
     //insert
     if (isset($_POST['insert'])) {
-        global $wpdb;
-        $table_name = $wpdb->prefix . "causas_muerte";
         $activo = false;
         if (isset($_POST['activo'])) {
             $activo = filter_var($_POST['activo'], FILTER_VALIDATE_BOOLEAN);
@@ -109,12 +107,7 @@ function formulario_registro_causas_muerte()
             'activo' => $activo,
             'fecha_registro' => date('Y-m-d H:m:s')
         ];
-
-        $wpdb->insert(
-            $table_name, //table
-            $datos, //data
-            array_fill(0, count($datos), '%s') //data format
-        );
+        CausasMuerteModel::create($datos);
         $message = "Causa de muerte creada exitosamente";
     }
     renderCSS();
