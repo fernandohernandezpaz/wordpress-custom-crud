@@ -14,6 +14,7 @@ define('ROOTDIR', plugin_dir_path(__FILE__));
 // agregando nuevas funciones
 require_once(ROOTDIR . 'Modulos/causas_muerte/CausasMuerte.php');
 require_once(ROOTDIR . 'Modulos/genero/Genero.php');
+require_once(ROOTDIR . 'Modulos/persona/Persona.php');
 
 // agregando apis
 require_once(ROOTDIR . 'Modulos/causas_muerte/Api.php');

@@ -34,6 +34,13 @@ function agregarNuevasOpcionesMenu()
                 'function' => 'list_generos',
             ],
             [
+                'parent_slug' => 'dashboard',
+                'page_title' => 'Persona',
+                'menu_title' => 'Persona',
+                'menu_slug' => 'lista_personas',
+                'function' => 'list_personas',
+            ],
+            [
                 'parent_slug' => 'Crear causas muerte',
                 'page_title' => 'Crear causas muerte',
                 'menu_title' => 'Crear causas muerte',
@@ -74,6 +81,27 @@ function agregarNuevasOpcionesMenu()
                 'menu_title' => 'Eliminar género',
                 'menu_slug' => 'eliminar_genero',
                 'function' => 'formulario_eliminar_genero',
+            ],
+            [
+                'parent_slug' => 'Crear persona',
+                'page_title' => 'Crear persona',
+                'menu_title' => 'Crear persona',
+                'menu_slug' => 'crear_persona',
+                'function' => 'formulario_registro_persona',
+            ],
+            [
+                'parent_slug' => 'Actualizar persona',
+                'page_title' => 'Actualizar persona',
+                'menu_title' => 'Actualizar persona',
+                'menu_slug' => 'actualizar_persona',
+                'function' => 'formulario_actualizar_persona',
+            ],
+            [
+                'parent_slug' => 'Eliminar persona',
+                'page_title' => 'Eliminar persona',
+                'menu_title' => 'Eliminar persona',
+                'menu_slug' => 'eliminar_persona',
+                'function' => 'formulario_eliminar_persona',
             ],
         ]
     ];

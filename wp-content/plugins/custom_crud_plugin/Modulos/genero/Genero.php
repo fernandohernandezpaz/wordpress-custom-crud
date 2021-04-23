@@ -168,7 +168,7 @@ function formulario_actualizar_genero()
         <div class="container-fluid" style="background: white">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h4>Formulario de registro de causas de muerte</h4>
+                    <h4>Formulario de actualizar género</h4>
                 </div>
                 <?php if (isset($message)): ?>
                     <div class="alert alert-success" role="alert"><?php echo $message; ?></div><?php endif; ?>
@@ -223,7 +223,7 @@ function formulario_eliminar_genero()
         <div class="container-fluid" style="background: white">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h4>Formulario de registro de causas de muerte</h4>
+                    <h4>Formulario de eliminar género</h4>
                 </div>
                 <?php if (isset($message)) { ?>
                     <div class="alert alert-success" role="alert"><?php echo $message; ?></div>

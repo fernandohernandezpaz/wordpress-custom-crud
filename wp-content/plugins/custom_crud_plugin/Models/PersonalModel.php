@@ -13,7 +13,7 @@ class PersonalModel extends Model
      *
      * @var string
      */
-    protected $table = 'personas';
+    protected $table = 'persona';
     protected $primaryKey = 'id';
     protected $fillable = [
         'genero_id',
@@ -34,7 +34,16 @@ class PersonalModel extends Model
     {
         parent::__construct($attributes);
         global $wpdb;
-        $this->table =$wpdb->prefix . $this->table;
+        $this->table = $wpdb->prefix . $this->table;
+    }
+
+    public function genero()
+    {
+        return $this->hasOne(
+            GeneroModel::class,
+            'id',
+            'genero_id'
+        );
     }
 
     public function causasMuerte()
@@ -42,9 +51,9 @@ class PersonalModel extends Model
         global $wpdb;
         return $this->belongsToMany(
             CausasMuerteModel::class,
-            $wpdb->prefix .'persona_causas_muerte',
-            'causas_muerte_id',
-            'persona_id'
+            $wpdb->prefix . 'persona_causas_muerte',
+            'persona_id',
+            'causa_muerte_id'
         );
     }
 }
