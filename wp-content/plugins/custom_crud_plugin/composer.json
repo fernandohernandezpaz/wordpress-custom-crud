@@ -1,0 +1,17 @@
+{
+    "name": "fernando/custom_crud_plugin",
+    "authors": [
+        {
+            "name": "fernandohernandezpaz",
+            "email": "fernandohernandezpaz@outlook.com"
+        }
+    ],
+    "require": {
+        "tareq1988/wp-eloquent": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": ""
+        }
+    }
+}
