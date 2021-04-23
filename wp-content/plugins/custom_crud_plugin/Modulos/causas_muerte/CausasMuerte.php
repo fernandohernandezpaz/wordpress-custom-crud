@@ -161,8 +161,6 @@ function formulario_registro_causas_muerte()
 //update
 function formulario_actualizar_causas_muerte()
 {
-    global $wpdb;
-    $table_name = $wpdb->prefix . "causas_muerte";
     $id = $_GET['id'];
     //UPDATE
     if (isset($_POST['update'])) {
@@ -176,18 +174,12 @@ function formulario_actualizar_causas_muerte()
             'abreviatura' => $_POST['abreviatura'],
             'activo' => $activo
         ];
-
-        $wpdb->update(
-            $table_name, //table
-            $datos, //data
-            array('id' => $id),
-            array_fill(0, count($datos), '%s'), //data format
-            array('%s') // where format
-        );
+        CausasMuerteModel::updateOrCreate([
+                'id'=>$id
+        ],$datos);
         $message = "Causa de muerte actualizada exitosamente";
     }
-    $registro = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name WHERE id=%s", $id));
-    $registro = $registro[0];
+    $registro = CausasMuerteModel::find($id);
     renderCSS();
     ?>
     <div class="wrap">
@@ -241,14 +233,12 @@ function formulario_actualizar_causas_muerte()
 //delete
 function formulario_eliminar_causas_muerte()
 {
-    global $wpdb;
-    $table_name = $wpdb->prefix . "causas_muerte";
     $id = $_GET['id'];
-    $registro = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name WHERE id=%s", $id));
-    $registro = $registro[0];
+    $registro = CausasMuerteModel::find($id);
     // DELETE
     if (isset($_POST['delete'])) {
-        $wpdb->query($wpdb->prepare("DELETE FROM $table_name WHERE id = %s", $_POST['id']));
+        $registro->delete();
+        $registro = null;
         $message = "Causa de muerte eliminada exitosamente";
     }
     renderCSS();
@@ -261,12 +251,14 @@ function formulario_eliminar_causas_muerte()
                 </div>
                 <?php if (isset($message)) { ?>
                     <div class="alert alert-success" role="alert"><?php echo $message; ?></div>
-                <?php } else { ?>
+                <?php } else if ($registro) { ?>
                     <div class="alert alert-info" role="alert">¿Seguro que desea eliminar este registro?</div>
+                <?php } else { ?>
+                    <div class="alert alert-info" role="alert">Ya eliminaste este registro ya no puedes eliminarlo nuevamente</div>
                 <?php } ?>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                     <form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
-                        <?php if (!isset($message)) { ?>
+                        <?php if ($registro) { ?>
                             <input type="hidden" name="id" value="<?php echo $registro->id; ?>">
                             <div class="row">
                                 <div class="col-lg-7 col-md-7 col-sm-10 col-12">
@@ -298,7 +290,7 @@ function formulario_eliminar_causas_muerte()
                         >
                             Regresar a listado
                         </a>
-                        <?php if (!isset($message)) { ?>
+                        <?php if ($registro) { ?>
                             <input type="submit" name="delete" value="eliminar" class="btn btn-danger">
                         <?php } ?>
                     </form>
