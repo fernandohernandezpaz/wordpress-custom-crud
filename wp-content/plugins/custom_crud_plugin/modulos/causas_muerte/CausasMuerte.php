@@ -112,8 +112,9 @@ function formulario_registro_causas_muerte()
         );
         $message = "Causa de muerte creada exitosamente";
     }
-    ?>
     renderCSS();
+    ?>
+
     <div class="wrap">
         <div class="container-fluid" style="background: white">
             <div class="row">
