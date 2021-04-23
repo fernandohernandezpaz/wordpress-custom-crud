@@ -1,5 +1,10 @@
 <?php
 
+function dashboard()
+{
+    return '<h2>Hola bienvenidos</h2>';
+}
+
 //menu items
 add_action('admin_menu', 'agregarNuevasOpcionesMenu');
 function agregarNuevasOpcionesMenu()
@@ -7,19 +12,27 @@ function agregarNuevasOpcionesMenu()
     $configMenu = [
         'menu' => [
             [
+                'page_title' => 'Dashboard',
+                'menu_title' => 'Dashboard',
+                'menu_slug' => 'dashboard',
+                'function' => 'dashboard',
+            ]
+        ],
+        'sub_menu' => [
+            [
+                'parent_slug' => 'dashboard',
                 'page_title' => 'Causas muerte',
                 'menu_title' => 'Causas muerte',
                 'menu_slug' => 'lista_estadisticas',
                 'function' => 'list_causas_muerte',
             ],
             [
+                'parent_slug' => 'dashboard',
                 'page_title' => 'Género',
                 'menu_title' => 'Género',
                 'menu_slug' => 'lista_generos',
                 'function' => 'list_generos',
-            ]
-        ],
-        'sub_menu' => [
+            ],
             [
                 'parent_slug' => 'Crear causas muerte',
                 'page_title' => 'Crear causas muerte',
