@@ -11,30 +11,57 @@ function agregarNuevasOpcionesMenu()
                 'menu_title' => 'Causas muerte',
                 'menu_slug' => 'lista_estadisticas',
                 'function' => 'list_causas_muerte',
+            ],
+            [
+                'page_title' => 'Género',
+                'menu_title' => 'Género',
+                'menu_slug' => 'lista_generos',
+                'function' => 'list_generos',
             ]
         ],
         'sub_menu' => [
             [
-                'parent_slug' => null,
+                'parent_slug' => 'Crear causas muerte',
                 'page_title' => 'Crear causas muerte',
                 'menu_title' => 'Crear causas muerte',
                 'menu_slug' => 'crear_causa_muerte',
                 'function' => 'formulario_registro_causas_muerte',
             ],
             [
-                'parent_slug' => null,
+                'parent_slug' => 'Actualizar causas muerte',
                 'page_title' => 'Actualizar causas muerte',
                 'menu_title' => 'Actualizar causas muerte',
                 'menu_slug' => 'actualizar_causa_muerte',
                 'function' => 'formulario_actualizar_causas_muerte',
             ],
             [
-                'parent_slug' => null,
+                'parent_slug' => 'Eliminar causas muerte',
                 'page_title' => 'Eliminar causas muerte',
                 'menu_title' => 'Eliminar causas muerte',
                 'menu_slug' => 'eliminar_causa_muerte',
                 'function' => 'formulario_eliminar_causas_muerte',
-            ]
+            ],
+            [
+                'parent_slug' => 'Crear género',
+                'page_title' => 'Crear género',
+                'menu_title' => 'Crear género',
+                'menu_slug' => 'crear_genero',
+                'function' => 'formulario_registro_genero',
+            ],
+            [
+                'parent_slug' => 'Actualizar género',
+                'page_title' => 'Actualizar género',
+                'menu_title' => 'Actualizar género',
+                'menu_slug' => 'actualizar_genero',
+                'function' => 'formulario_actualizar_genero',
+            ],
+            [
+                'parent_slug' => 'Eliminar género',
+                'page_title' => 'Eliminar género',
+                'menu_title' => 'Eliminar género',
+                'menu_slug' => 'eliminar_genero',
+                'function' => 'formulario_eliminar_genero',
+            ],
         ]
     ];
     $keys = array_keys($configMenu);

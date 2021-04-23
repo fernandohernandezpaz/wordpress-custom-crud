@@ -9,7 +9,7 @@ require_once(ROOTDIR . 'vendor/autoload.php');
  * @return array.
  */
 function causasMuerteResponse() {
-    return CausasMuerteModel::all();
+    return CausasMuerteModel::where('activo', true)->get();
 }
 
 add_action( 'rest_api_init', function () {
