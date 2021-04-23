@@ -1,4 +1,9 @@
 <?php
+//namespace App\Modulos\causas_muerte;
+
+use App\Models\CausasMuerteModel;
+
+require_once(ROOTDIR . 'vendor/autoload.php');
 require_once(ROOTDIR . 'assetsConfig.php');
 //list
 function list_causas_muerte()
@@ -7,9 +12,9 @@ function list_causas_muerte()
     ?>
     <?php
     global $wpdb;
-    $table_name = $wpdb->prefix . "causas_muerte";
-    $data = $wpdb->get_results("SELECT id, user_id, descripcion, abreviatura, activo from $table_name");
-    $columnas = $wpdb->get_col("DESC {$table_name}", 0);
+    $causasMuerteController = new CausasMuerteModel();
+    $data = $causasMuerteController->with('usuarioRegistrador')->get();
+    $columnas = $causasMuerteController->getColumns();
     $columnasOcultas = ['fecha_registro'];
     ?>
     <div class="wrap">
@@ -39,7 +44,7 @@ function list_causas_muerte()
                                     </th>
                                 <?php }
                             } ?>
-                            <th>Acciones</th>
+                            <th class="text-center text-uppercase">Acciones</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -55,13 +60,13 @@ function list_causas_muerte()
                                 ?>
                                 <tr>
                                     <th><?php echo $row->id ?></th>
-                                    <th><?php echo $row->user_id ?></th>
+                                    <th><?php echo $row->usuarioRegistrador->user_nicename ?></th>
                                     <th><?php echo $row->descripcion ?></th>
                                     <th><?php echo $row->abreviatura ?></th>
                                     <th class="text-center <?php echo $row->activo ? 'text-success' : 'text-muted' ?>">
                                         <?php echo $row->activo ? 'Activo' : 'Inactivo'; ?>
                                     </th>
-                                    <th>
+                                    <th class="text-center">
                                         <a href="<?php echo admin_url('admin.php?page=actualizar_causa_muerte&id=' . $row->id); ?>"
                                            style="text-decoration: none" class="text-primary">
                                             Actualizar

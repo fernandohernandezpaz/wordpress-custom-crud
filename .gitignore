@@ -6,3 +6,5 @@ wp-includes
 wp-config.php
 .htaccess
 wp-content/debug.log
+wp-content/plugins/custom_crud_plugin/vendor
+wp-content/plugins/custom_crud_plugin/composer.lock

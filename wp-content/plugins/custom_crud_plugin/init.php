@@ -6,12 +6,16 @@ Version: 1.0.0
 Author: Fernando Hernández Paz
 Author URI: -
 */
+namespace App;
 
 // definiendo directorio en base al archivo init
 define('ROOTDIR', plugin_dir_path(__FILE__));
 
 // agregando nuevas funciones
-require_once(ROOTDIR . 'modulos/causas_muerte/CausasMuerte.php');
+require_once(ROOTDIR . 'Modulos/causas_muerte/CausasMuerte.php');
+
+// agregando apis
+require_once(ROOTDIR . 'Modulos/causas_muerte/Api.php');
 
 // if you want to check in debug log
 // require_once(ROOTDIR . 'write_in_log.php');

@@ -54,8 +54,12 @@ function renderJS()
         foreach ($js[$llave] as $attr) {
             $script = '<script src="' . $attr['src'] . '" rel="stylesheet"';
             if ($llave === 'cdn') {
-                $script .= ' integrity="' . $attr['integrity'] . '"';
-                $script .= ' crossorigin="' . $attr['crossorigin'] . '"';
+                if (isset($attr['integrity'])) {
+                    $script .= ' integrity="' . $attr['integrity'] . '"';
+                }
+                if (isset($attr['crossorigin'])) {
+                    $script .= ' crossorigin="' . $attr['crossorigin'] . '"';
+                }
             }
             $script .= '></script>';
         }
