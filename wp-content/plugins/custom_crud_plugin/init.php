@@ -31,10 +31,11 @@ function creating_news_tables()
     $sql_file = fread($file, filesize($path));
     fclose($file);
     $sql = str_replace('{prefix}', $wpdb->prefix, $sql_file);
-    write_log($sql);
-
-    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-    dbDelta($sql);
+    $array_sql = preg_split("#\n\s*\n#Uis", $sql);
+    foreach ($array_sql as $sql) {
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        dbDelta($sql);
+    }
 }
 
 // ejecute los scripts de instalación tras la activación del complemento
