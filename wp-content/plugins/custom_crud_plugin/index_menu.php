@@ -12,8 +12,8 @@ function agregarNuevasOpcionesMenu()
     $configMenu = [
         'menu' => [
             [
-                'page_title' => 'Dashboard',
-                'menu_title' => 'Dashboard',
+                'page_title' => 'Custom plugin',
+                'menu_title' => 'Custom plugin',
                 'menu_slug' => 'dashboard',
                 'function' => 'dashboard',
             ]
